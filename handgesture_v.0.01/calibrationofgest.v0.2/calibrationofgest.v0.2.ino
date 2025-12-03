@@ -36,32 +36,32 @@ void loop() {
 
   lcd.clear();
 
-  if (ay > 3000) {              // Forward tilt
+  if (ax < -14000 && az > 8000) {              // Forward tilt
     lcd.print("Hi!");
     Serial.println("Hi!");
-    tone(buzzerPin, 880, 200);
+   // tone(buzzerPin, 880, 200);
   }
-  else if (az > 3000) {         // Upward tilt
+  else if (ay > 12000) {         // Upward tilt
     lcd.print("Food");
     Serial.println("Food");
-    tone(buzzerPin, 1000, 200);
+    //tone(buzzerPin, 1000, 200);
   }
-  else if (ax > 3000) {         // Right tilt
+  else if (ax > 3000 && ay<-2000) {         // Right tilt
     lcd.print("Water");
     Serial.println("Water");
-    tone(buzzerPin, 1200, 200);
+    //tone(buzzerPin, 1200, 200);
   }
-  else if (ax < -3000) {        // Left tilt
+  else if (az > 3000 && ay>5000) {        // Left tilt
     lcd.print("Bye");
     Serial.println("Bye");
-    tone(buzzerPin, 1400, 200);
+    //tone(buzzerPin, 1400, 200);
   }
   else {
     lcd.print("No gesture");
     Serial.println("No gesture");
-    tone(buzzerPin, 400, 200);
+    //tone(buzzerPin, 400, 200);
   }
 
   delay(1000);
-  noTone(buzzerPin);
+ // noTone(buzzerPin);
 }

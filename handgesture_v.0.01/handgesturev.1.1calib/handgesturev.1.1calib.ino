@@ -24,6 +24,12 @@ unsigned long helpPressStart = 0;
 bool gesturePressed = false;
 unsigned long gesturePressStart = 0;
 
+// --- Calibration offsets (from rest values) ---
+const int baselineAX = -250;
+const int baselineAY = -4200;
+const int baselineAZ = -15600;
+
+
 void setup() {
   lcd.init();
   lcd.backlight();
@@ -105,6 +111,11 @@ void loop() {
 
       int16_t ax, ay, az;
       mpu.getAcceleration(&ax, &ay, &az);
+            // Apply calibration offsets
+      ax -= baselineAX;
+      ay -= baselineAY;
+      az -= baselineAZ;
+
 
       lcd.clear();
       if (ay > 12000) {
